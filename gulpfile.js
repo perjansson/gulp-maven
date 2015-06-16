@@ -35,5 +35,5 @@ gulp.task('connect', function() {
     });
 });
 
-gulp.task('start', ['connect']);
+gulp.task('run', ['connect']);
 gulp.task('default', ['lint', 'build']);
