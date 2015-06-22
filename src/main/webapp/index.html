@@ -4,14 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>gulp-maven</title>
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <script src="js/gulp-maven.min.js"></script>
-    <script>
-        var helloApp = angular.module("helloApp", []);
-        helloApp.controller("HelloCtrl", function ($scope) {
-            $scope.name = "Per Jansson";
-        });
-    </script>
+    <link rel="stylesheet" href="public/css/style.concat.css">
 </head>
 <body ng-controller="HelloCtrl">
 <div class="container">
@@ -33,5 +26,13 @@
         </form>
     </div>
 </div>
+
+<script src="public/js/app.concat.js"></script>
+<script>
+    var helloApp = angular.module("helloApp", []);
+    helloApp.controller("HelloCtrl", function ($scope) {
+        $scope.name = "Per Jansson";
+    });
+</script>
 </body>
-</html>	
+</html>

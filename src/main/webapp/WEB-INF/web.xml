@@ -3,8 +3,21 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-	<display-name>gulp-maven</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>
+
+  <security-constraint>
+    <display-name>Restrict direct access to certain folders</display-name>
+    <web-resource-collection>
+        <web-resource-name>Restricted folders</web-resource-name>
+        <url-pattern>/js/*</url-pattern>
+        <url-pattern>/css/*</url-pattern>
+        <url-pattern>/html/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint />
+  </security-constraint>
+
+  <error-page>
+      <error-code>403</error-code>
+      <location>/403.html</location>
+  </error-page>
+
 </web-app>

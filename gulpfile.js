@@ -9,30 +9,42 @@ var gulp = require('gulp'),
     webdriver_standalone = require("gulp-protractor").webdriver_standalone,
     webdriver_update = require('gulp-protractor').webdriver_update;
 
-var webappPath     = 'src/main/webapp/',
-    resourcesPath  = 'src/main/resources/',
-    generatedPath  = 'target/classes/';
+var webappPath = 'src/main/webapp/',
+    resourcesPath = 'src/main/resources/',
+    generatedPath = 'target/classes/';
 
 gulp.task('lint', function () {
-    return gulp.src('public/js/**/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+  return gulp.src(webappPath + 'js/**/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
 });
 
-gulp.task('build', function(){
-    return gulp.src(['node_modules/angular/angular.min.js', 'node_modules/angular-ui-router/build/angular-ui-router.min.js'])
-        .pipe(gp_concat('concat.js'))
-        .pipe(gp_rename('gulp-maven.min.js'))
-        /*.pipe(gp_uglify())*/
-        .pipe(gulp.dest(webappPath + 'js/'));
+gulp.task('js', function(){
+  return gulp.src(['node_modules/angular/angular.min.js',
+    'node_modules/angular-ui-router/build/angular-ui-router.min.js',
+    webappPath + 'js/**/*.js'])
+    .pipe(gp_concat('app.concat.js'))
+    //.pipe(gp_rename('app.min.js'))
+    //.pipe(gp_uglify())
+    .pipe(gulp.dest(webappPath + 'public/js/'));
 });
+
+gulp.task('css', function() {
+  return gulp.src(['node_modules/bootstrap/dist/css/bootstrap.min.css',
+    webappPath + 'css/**/*.css'])
+    .pipe(gp_concat('style.concat.css'))
+    //.pipe(gp_rename('style.min.css'))
+    .pipe(gulp.dest(webappPath + 'public/css/'));
+});
+
+gulp.task('build', ['js', 'css']);
 
 gulp.task('connect', function() {
-    connect.server({
-        root: 'src/main/webapp',
-        livereload: true,
-        port: 8081
-    });
+  connect.server({
+    root: 'src/main/webapp',
+    livereload: true,
+    port: 8081
+  });
 });
 
 gulp.task('run', ['connect']);
