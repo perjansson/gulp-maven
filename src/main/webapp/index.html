@@ -6,21 +6,20 @@
     <title>gulp-maven</title>
     <link rel="stylesheet" href="public/css/style.concat.css">
 </head>
-<body ng-controller="HelloCtrl">
+<body ng-controller="HelloController">
 <div class="container">
     <div class="page-header" style="margin: 0">
-        <h1>gulp-maven!</h1>
+        <h1 class="per-style">gulp-maven</h1>
     </div>
     <div style="padding-top: 30px">
         <div style="padding: 0px 0px 20px 30px">
-            <h4>Hello {{name}}! How are you doing today?</h4></div>
+            <h4>Hello {{name}}! How are you doing today!?</h4></div>
         <form class="form-horizontal" role="form" method="post" action="#">
             <div class="form-group">
                 <label class="col-md-1 control-label">Name</label>
 
                 <div class="col-md-3">
-                    <input type="text" class="form-control" name="firstname"
-                           ng-model="name">
+                    <input type="text" class="form-control" name="firstname" ng-model="name">
                 </div>
             </div>
         </form>
@@ -30,7 +29,7 @@
 <script src="public/js/app.concat.js"></script>
 <script>
     var helloApp = angular.module("helloApp", []);
-    helloApp.controller("HelloCtrl", function ($scope) {
+    helloApp.controller("HelloController", function ($scope) {
         $scope.name = "Per Jansson";
     });
 </script>

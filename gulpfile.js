@@ -5,39 +5,46 @@ var gulp = require('gulp'),
     gp_rename = require('gulp-rename'),
     gp_uglify = require('gulp-uglify'),
     connect = require('gulp-connect'),
-    protractor = require("gulp-protractor").protractor,
-    webdriver_standalone = require("gulp-protractor").webdriver_standalone,
-    webdriver_update = require('gulp-protractor').webdriver_update;
+    protractor = require("gulp-protractor").protractor;
 
-var webappPath = 'src/main/webapp/',
-    resourcesPath = 'src/main/resources/',
-    generatedPath = 'target/classes/';
+var paths = {
+  webapp : 'src/main/webapp/',
+  src_js : 'src/main/webapp/js/**/*.js',
+  src_css : 'src/main/webapp/css/**/*.css',
+  src_html : 'src/main/webapp/html/**/*.html',
+  lib_js : ['node_modules/angular/angular.min.js',
+      'node_modules/angular-ui-router/build/angular-ui-router.min.js'],
+  lib_css : ['node_modules/bootstrap/dist/css/bootstrap.min.css'],
+  target_js : 'src/main/webapp/public/js/',
+  target_css : 'src/main/webapp/public/css/',
+  target_html : 'src/main/webapp/public/html/'
+};
 
-gulp.task('lint', function () {
-  return gulp.src(webappPath + 'js/**/*.js')
+gulp.task('jshint', function () {
+  return gulp.src(['gulpfile.js', paths.src_js])
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
 
 gulp.task('js', function(){
-  return gulp.src(['node_modules/angular/angular.min.js',
-    'node_modules/angular-ui-router/build/angular-ui-router.min.js',
-    webappPath + 'js/**/*.js'])
+  return gulp.src(paths.lib_js.concat(paths.src_js))
     .pipe(gp_concat('app.concat.js'))
     //.pipe(gp_rename('app.min.js'))
     //.pipe(gp_uglify())
-    .pipe(gulp.dest(webappPath + 'public/js/'));
+    .pipe(gulp.dest(paths.target_js));
 });
 
 gulp.task('css', function() {
-  return gulp.src(['node_modules/bootstrap/dist/css/bootstrap.min.css',
-    webappPath + 'css/**/*.css'])
+  return gulp.src(paths.lib_css.concat(paths.src_css))
     .pipe(gp_concat('style.concat.css'))
     //.pipe(gp_rename('style.min.css'))
-    .pipe(gulp.dest(webappPath + 'public/css/'));
+    .pipe(gulp.dest(paths.target_css));
 });
 
-gulp.task('build', ['js', 'css']);
+gulp.task('html', function() {
+  return gulp.src(paths.src_html)
+    .pipe(gulp.dest(paths.target_html));
+});
 
 gulp.task('connect', function() {
   connect.server({
@@ -47,5 +54,14 @@ gulp.task('connect', function() {
   });
 });
 
-gulp.task('run', ['connect']);
-gulp.task('default', ['lint', 'build']);
+gulp.task('watch', function () {
+  gulp.watch([paths.webapp + '**/*', '!' + paths.webapp + '{public,public/**}'], ['build']);
+  gulp.watch(paths.webapp + '**/*', function() {
+    return gulp.src(paths.webapp)
+      .pipe(connect.reload());
+  });
+});
+
+gulp.task('build', ['js', 'css', 'html']);
+gulp.task('run', ['connect', 'watch']);
+gulp.task('default', ['jshint', 'build']);
