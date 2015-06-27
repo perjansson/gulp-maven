@@ -8,7 +8,7 @@
     function searchService($http) {
 
         this.search = function(searchInput) {
-            return $http.post('/search/', searchInput)
+            return $http.post('/api/search/', searchInput)
                 .then(function(response) {
                     return response.data
                 });

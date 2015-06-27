@@ -32712,6 +32712,12 @@ angular.module('ui.router.state')
         vm.searchResult = [];
         vm.onSearch = onSearch;
 
+        activate();
+
+        function activate() {
+            onSearch();
+        }
+
         function onSearch() {
             searchService.search(vm.searchInput)
                 .then(function (searchResult) {
@@ -32732,7 +32738,7 @@ angular.module('ui.router.state')
     function searchService($http) {
 
         this.search = function(searchInput) {
-            return $http.post('/search/', searchInput)
+            return $http.post('/api/search/', searchInput)
                 .then(function(response) {
                     return response.data
                 });

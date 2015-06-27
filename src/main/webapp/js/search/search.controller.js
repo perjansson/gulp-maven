@@ -11,6 +11,12 @@
         vm.searchResult = [];
         vm.onSearch = onSearch;
 
+        activate();
+
+        function activate() {
+            onSearch();
+        }
+
         function onSearch() {
             searchService.search(vm.searchInput)
                 .then(function (searchResult) {

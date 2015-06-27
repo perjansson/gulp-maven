@@ -19,9 +19,12 @@ public class UserRepository {
 
     static {
         dummyUsers = Arrays.asList(
-                aUser(1, "Martin", "Dahlin", "martin.dahlin@user.se"),
-                aUser(2, "Tomas", "Brolin", "tomas.brolin@user.se"),
-                aUser(3, "Klas", "Ingesson", "klas.ingesson@user.se"));
+                aUser(1, "Per", "Jansson", "per.jansson@user.se"),
+                aUser(2, "Kanika", "Gulabani", "kanika.gulabani@user.se"),
+                aUser(3, "Tomas", "Hägg", "tomas.hagg@user.se"),
+                aUser(4, "Bengt", "Franzén", "bengt.franzen@user.se"),
+                aUser(5, "Ruchir", "Sachdeva", "ruchir.sachdeva@user.se"),
+                aUser(6, "Marcus", "Nylander", "marcus.nylander@user.se"));
     }
 
     public List<User> findUsers() {
