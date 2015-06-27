@@ -1,37 +1,22 @@
 <!DOCTYPE html>
-<html ng-app="helloApp">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>gulp-maven</title>
+    <title>Search</title>
     <link rel="stylesheet" href="public/css/style.concat.css">
+    <script src="public/js/app.concat.js"></script>
 </head>
-<body ng-controller="HelloController">
-<div class="container">
-    <div class="page-header" style="margin: 0">
-        <h1 class="per-style">gulp-maven</h1>
-    </div>
-    <div style="padding-top: 30px">
-        <div style="padding: 0px 0px 20px 30px">
-            <h4>Hello {{name}}! How are you doing today!?</h4></div>
-        <form class="form-horizontal" role="form" method="post" action="#">
-            <div class="form-group">
-                <label class="col-md-1 control-label">Name</label>
 
-                <div class="col-md-3">
-                    <input type="text" class="form-control" name="firstname" ng-model="name">
-                </div>
-            </div>
-        </form>
+<body ng-app="searchApp">
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>Search app</h1>
+
+        <p>For people who wants to... search!</p>
     </div>
+    <div ui-view></div>
 </div>
 
-<script src="public/js/app.concat.js"></script>
-<script>
-    var helloApp = angular.module("helloApp", []);
-    helloApp.controller("HelloController", function ($scope) {
-        $scope.name = "Per Jansson";
-    });
-</script>
 </body>
 </html>

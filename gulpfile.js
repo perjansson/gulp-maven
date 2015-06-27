@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
-    livereload = require('gulp-livereload'),
     gp_concat = require('gulp-concat'),
     gp_rename = require('gulp-rename'),
     gp_uglify = require('gulp-uglify'),
@@ -12,8 +11,8 @@ var paths = {
   src_js : 'src/main/webapp/js/**/*.js',
   src_css : 'src/main/webapp/css/**/*.css',
   src_html : 'src/main/webapp/html/**/*.html',
-  lib_js : ['node_modules/angular/angular.min.js',
-      'node_modules/angular-ui-router/build/angular-ui-router.min.js'],
+  lib_js : ['node_modules/angular/angular.js',
+      'node_modules/angular-ui-router/build/angular-ui-router.js'],
   lib_css : ['node_modules/bootstrap/dist/css/bootstrap.min.css'],
   target_js : 'src/main/webapp/public/js/',
   target_css : 'src/main/webapp/public/css/',
@@ -64,4 +63,4 @@ gulp.task('watch', function () {
 
 gulp.task('build', ['js', 'css', 'html']);
 gulp.task('run', ['connect', 'watch']);
-gulp.task('default', ['jshint', 'build']);
+gulp.task('default', ['build']);

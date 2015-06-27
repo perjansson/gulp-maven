@@ -126,7 +126,6 @@
                     <execution>
                         <id>gulp build</id>
                         <goals>
-                            <!-- Executes the 'default' task in gulpfile.js -->
                             <goal>gulp</goal>
                         </goals>
                     </execution>

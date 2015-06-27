@@ -17,7 +17,6 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<User> findUsers() {

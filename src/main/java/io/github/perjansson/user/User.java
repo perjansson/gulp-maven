@@ -1,5 +1,8 @@
 package io.github.perjansson.user;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
+
 public class User {
 
     private long id;
@@ -46,5 +49,16 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("firstName", firstName)
+                .add("lastName", lastName)
+                .add("email", email)
+                .toString();
     }
 }

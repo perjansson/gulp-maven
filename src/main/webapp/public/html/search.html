@@ -1,0 +1,29 @@
+<form>
+    <div class="form-group">
+        <label for="firstName">Search anything</label>
+        <input type="text" class="form-control" id="firstName" ng-model="vm.searchInput.search" ng-keyup="vm.onSearch()">
+    </div>
+</form>
+
+
+<section class="search-result" ng-show="vm.searchResult.length">
+
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>First name</th>
+            <th>Last name name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="searchResult in vm.searchResult">
+            <td>{{searchResult.id}}</td>
+            <td>{{searchResult.firstName}}</td>
+            <td>{{searchResult.lastName}}</td>
+            <td>{{searchResult.email}}</td>
+        </tr>
+        </tbody>
+    </table>
+</section>
