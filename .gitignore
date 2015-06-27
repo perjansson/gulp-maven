@@ -33,3 +33,6 @@ node
 
 # Java
 target
+
+# JavaScript
+src/main/webapp/public/*
